@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Epennzy — Store</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root[data-theme="dark"]{--bg:#08080e;--bg2:#0d0d18;--card:#111120;--card2:#181828;--border:#21213a;--border2:#2e2e50;--accent:#6c5ce7;--a2:#e84393;--a3:#00cec9;--text:#eeeef8;--muted:#8888aa;--faint:#44445a;--glow:rgba(108,92,231,.28);--glow2:rgba(232,67,147,.18);}
+:root[data-theme="light"]{--bg:#f7f7ff;--bg2:#efeffd;--card:#fff;--card2:#f0f0fc;--border:#ddddf2;--border2:#c5c5e8;--accent:#5040d8;--a2:#cc2872;--a3:#007f7c;--text:#0a0a1e;--muted:#5a5a80;--faint:#aaaac8;--glow:rgba(80,64,216,.14);--glow2:rgba(204,40,114,.1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+nav{position:fixed;top:0;inset-x:0;z-index:200;height:58px;background:rgba(8,8,14,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+[data-theme="light"] nav{background:rgba(247,247,255,.88);}
+.nw{max-width:1140px;margin:0 auto;height:100%;display:flex;align-items:center;padding:0 1.5rem;gap:.75rem;}
+.logo{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:1.1rem;color:var(--text);text-decoration:none;flex-shrink:0;}
+.logo i{color:var(--accent);font-size:.85rem;}.logo b{color:var(--accent);}.logo small{font-size:.7rem;color:var(--faint);margin-left:1px;}
+.nl{display:flex;gap:2px;margin-left:auto;}
+.nl a{display:flex;align-items:center;gap:.35rem;padding:.38rem .82rem;border-radius:7px;font-size:.8rem;font-weight:600;color:var(--muted);text-decoration:none;transition:.18s;white-space:nowrap;}
+.nl a i{font-size:.72rem;}.nl a:hover{background:var(--card2);color:var(--text);}.nl a.on{background:var(--accent);color:#fff;box-shadow:0 2px 14px var(--glow);}
+.na{display:flex;gap:.45rem;align-items:center;}
+.ib{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:.18s;}
+.ib:hover{border-color:var(--accent);color:var(--accent);}
+.hm{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:5px;}
+.hm span{display:block;width:19px;height:2px;background:var(--muted);border-radius:2px;}
+.mn{display:none;position:fixed;top:58px;inset-x:0;bottom:0;z-index:199;background:var(--bg2);border-top:1px solid var(--border);flex-direction:column;padding:1.2rem;gap:.35rem;overflow-y:auto;}
+.mn.op{display:flex;animation:ms .2s ease;}
+.mn a{display:flex;align-items:center;gap:.7rem;padding:.78rem .95rem;border-radius:9px;font-size:.93rem;font-weight:600;color:var(--muted);text-decoration:none;transition:.16s;}
+.mn a:hover,.mn a.on{background:var(--accent);color:#fff;}
+.mn a i{width:17px;text-align:center;font-size:.82rem;}
+@keyframes ms{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+@media(max-width:800px){.nl{display:none;}.hm{display:flex;}}
+
+main{padding-top:58px;}
+.ph{padding:3.5rem 1.5rem 1.5rem;text-align:center;position:relative;overflow:hidden;}
+.ph::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,var(--glow),transparent 70%);pointer-events:none;}
+.chip{display:inline-flex;align-items:center;gap:.42rem;background:var(--card);border:1px solid var(--border2);border-radius:100px;padding:.3rem .95rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:1.3px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;}
+.ph h1{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:.7rem;}
+.ph h1 em{font-style:normal;background:linear-gradient(125deg,var(--accent),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ph p{color:var(--muted);font-size:.92rem;max-width:480px;margin:0 auto;line-height:1.7;}
+
+/* STORE LAYOUT */
+.sw{max-width:1140px;margin:0 auto;padding:2rem 1.5rem 5rem;display:grid;grid-template-columns:240px 1fr;gap:2rem;}
+@media(max-width:900px){.sw{grid-template-columns:1fr;}}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:74px;align-self:start;}
+@media(max-width:900px){.sidebar{position:static;}}
+.sb-title{font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);margin-bottom:.75rem;padding:0 .1rem;}
+.cat-list{display:flex;flex-direction:column;gap:3px;}
+@media(max-width:900px){.cat-list{flex-direction:row;flex-wrap:wrap;gap:6px;}}
+.cat-btn{display:flex;align-items:center;gap:.6rem;padding:.55rem .9rem;border-radius:9px;font-size:.83rem;font-weight:600;color:var(--muted);background:none;border:1px solid transparent;cursor:pointer;font-family:inherit;text-align:left;width:100%;transition:.18s;}
+@media(max-width:900px){.cat-btn{width:auto;}}
+.cat-btn i{font-size:.78rem;width:16px;text-align:center;flex-shrink:0;}
+.cat-btn:hover{background:var(--card);color:var(--text);}
+.cat-btn.on{background:var(--card);color:var(--text);border-color:var(--border2);}
+.cat-btn.on i{color:var(--accent);}
+
+/* SEARCH */
+.search-wrap{margin-bottom:1.5rem;}
+.search-box{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.6rem 1rem;transition:.18s;}
+.search-box:focus-within{border-color:var(--border2);}
+.search-box i{color:var(--faint);font-size:.82rem;flex-shrink:0;}
+.search-box input{background:none;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.85rem;width:100%;}
+.search-box input::placeholder{color:var(--faint);}
+
+/* PRODUCT CARDS */
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:13px;overflow:hidden;transition:.25s;display:flex;flex-direction:column;}
+.pc:hover{border-color:var(--border2);box-shadow:0 8px 28px rgba(0,0,0,.2);transform:translateY(-2px);}
+.pc-head{height:100px;display:flex;align-items:center;justify-content:center;position:relative;font-size:2.8rem;}
+.pc-badge{position:absolute;top:10px;left:10px;font-size:.62rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:.2rem .55rem;border-radius:5px;color:#fff;}
+.pc-body{padding:1.15rem;flex:1;display:flex;flex-direction:column;}
+.pc-cat{font-family:'JetBrains Mono',monospace;font-size:.63rem;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem;}
+.pc-name{font-size:.98rem;font-weight:700;margin-bottom:.8rem;}
+
+/* PRICE TABLE */
+.price-table{width:100%;border-collapse:collapse;margin-bottom:1rem;}
+.price-table tr{border-bottom:1px solid var(--border);}
+.price-table tr:last-child{border-bottom:none;}
+.price-table td{padding:.38rem 0;font-size:.78rem;line-height:1.4;}
+.price-table td:first-child{color:var(--muted);padding-right:.5rem;}
+.price-table td:last-child{text-align:right;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text);white-space:nowrap;}
+
+.pc-note{font-size:.75rem;color:var(--faint);line-height:1.6;margin-bottom:1rem;padding:.65rem .8rem;background:var(--card2);border-radius:7px;border-left:2px solid var(--border2);}
+.pc-note i{margin-right:.3rem;color:var(--a2);}
+.order-btn{display:flex;align-items:center;justify-content:center;gap:.4rem;background:var(--accent);color:#fff;padding:.6rem;border-radius:8px;font-size:.82rem;font-weight:700;text-decoration:none;transition:.2s;margin-top:auto;}
+.order-btn:hover{opacity:.9;box-shadow:0 4px 16px var(--glow);}
+.order-btn i{font-size:.78rem;}
+
+.empty{grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--faint);}
+.empty i{font-size:2.5rem;display:block;margin-bottom:.8rem;}
+
+footer{text-align:center;padding:1.8rem 1.5rem;border-top:1px solid var(--border);color:var(--faint);font-size:.76rem;font-family:'JetBrains Mono',monospace;}
+footer b{color:var(--accent);}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .45s,transform .45s;}
+.rv.on{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nw">
+    <a href="index.html" class="logo"><i class="fa-solid fa-star"></i>Epenn<b>zy</b><small></></small></a>
+    <div class="nl">
+      <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+      <a href="store.html" class="on"><i class="fa-solid fa-bag-shopping"></i>Store</a>
+      <a href="coding.html"><i class="fa-solid fa-code"></i>Coding</a>
+      <a href="freeacc.html"><i class="fa-solid fa-envelope-open-text"></i>Free Acc</a>
+      <a href="about.html"><i class="fa-solid fa-circle-user"></i>About</a>
+    </div>
+    <div class="na">
+      <button class="ib" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+      <button class="hm" onclick="toggleMob()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mn" id="mn">
+  <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+  <a href="store.html" class="on"><i class="fa-solid fa-bag-shopping"></i>Store</a>
+  <a href="coding.html"><i class="fa-solid fa-code"></i>Coding</a>
+  <a href="freeacc.html"><i class="fa-solid fa-envelope-open-text"></i>Free Acc</a>
+  <a href="about.html"><i class="fa-solid fa-circle-user"></i>About</a>
+</div>
+
+<main>
+  <div class="ph rv">
+    <div class="chip"><i class="fa-solid fa-bag-shopping" style="font-size:.65rem"></i>Epennzy Store</div>
+    <h1>Akun &amp; Aplikasi <em>Premium</em></h1>
+    <p>Harga terjangkau, stok selalu diperbarui. Tanya stok sebelum order dan no rush ya.</p>
+  </div>
+
+  <div class="sw">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sb-title">Kategori</div>
+      <div class="cat-list" id="catList">
+        <button class="cat-btn on" data-cat="all" onclick="setcat(this,'all')"><i class="fa-solid fa-border-all"></i>Semua Produk</button>
+        <button class="cat-btn" data-cat="editing" onclick="setcat(this,'editing')"><i class="fa-solid fa-film"></i>Editing</button>
+        <button class="cat-btn" data-cat="streaming" onclick="setcat(this,'streaming')"><i class="fa-solid fa-play"></i>Streaming</button>
+        <button class="cat-btn" data-cat="musik" onclick="setcat(this,'musik')"><i class="fa-solid fa-music"></i>Musik</button>
+        <button class="cat-btn" data-cat="produktif" onclick="setcat(this,'produktif')"><i class="fa-solid fa-briefcase"></i>Produktivitas</button>
+        <button class="cat-btn" data-cat="topup" onclick="setcat(this,'topup')"><i class="fa-solid fa-gem"></i>Top Up</button>
+        <button class="cat-btn" data-cat="lainnya" onclick="setcat(this,'lainnya')"><i class="fa-solid fa-ellipsis"></i>Lainnya</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div>
+      <div class="search-wrap">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="srch" placeholder="Cari produk..." oninput="render()"/>
+        </div>
+      </div>
+      <div class="products" id="prodGrid"></div>
+    </div>
+  </div>
+</main>
+
+<footer><p>Copyright &copy; 2025 <b>Epennzy</b>. All rights reserved.</p></footer>
+
+<script>
+const WA = 'https://wa.me/6281234567890';
+
+const products = [
+  {
+    id:1, name:'Alight Motion', cat:'editing', icon:'🎬', color:'#e84393',
+    badge:'HOT', badgeColor:'#e84393',
+    prices:[
+      {label:'Private Seller', price:'200'},
+      {label:'Private Buyer', price:'800'},
+    ],
+    note:'Email buyer wajib aktif (tidak harus fresh). Tanya stok sebelum order.'
+  },
+  {
+    id:2, name:'Canva', cat:'editing', icon:'🎨', color:'#00b4d8',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'1 Bulan Member (Invite)', price:'300'},
+      {label:'1 Bulan Admin (Invite)', price:'2.000'},
+      {label:'Lifetime Member (Invite)', price:'1.000'},
+      {label:'Lifetime Admin (Invite)', price:'15.000'},
+    ],
+    note:'Wajib SS login untuk klaim garansi. Tidak SS = tidak menerima komplain.'
+  },
+  {
+    id:3, name:'CapCut Private', cat:'editing', icon:'✂️', color:'#6c5ce7',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'7 Hari', price:'1.000'},
+      {label:'14 Hari', price:'1.500'},
+      {label:'21 Hari (Garansi 7 Hari)', price:'2.000'},
+      {label:'28 Hari (Garansi 7 Hari)', price:'2.500'},
+      {label:'35 Hari', price:'3.000'},
+      {label:'45 Hari', price:'4.000'},
+    ],
+    note:'No reff. Tanya stok sebelum order.'
+  },
+  {
+    id:4, name:'Lightroom', cat:'editing', icon:'📸', color:'#fdcb6e',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'7 Hari Acc Buyer', price:'2.000'},
+      {label:'1 Tahun Acc Seller', price:'10.000'},
+    ],
+    note:'Tanya stok sebelum order.'
+  },
+  {
+    id:5, name:'Netflix', cat:'streaming', icon:'🎥', color:'#e50914',
+    badge:'HOT', badgeColor:'#e50914',
+    prices:[
+      {label:'1 User — 1 Hari', price:'2.500'},
+      {label:'1 User — 5 Hari', price:'7.000'},
+      {label:'1 User — 7 Hari', price:'8.500'},
+      {label:'1 User — 1 Bulan', price:'20.000'},
+      {label:'2 User — 1 Hari', price:'1.500'},
+      {label:'2 User — 5 Hari', price:'5.000'},
+      {label:'2 User — 7 Hari', price:'7.000'},
+      {label:'2 User — 1 Bulan', price:'13.500'},
+      {label:'Semi Private — 1 Bulan', price:'23.000'},
+    ],
+    note:'No otak-atik akun. No reff. Tanya stok sebelum bayar.'
+  },
+  {
+    id:6, name:'iQIYI', cat:'streaming', icon:'📺', color:'#00b894',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'Sharing 1 Bln Standar', price:'4.500'},
+      {label:'Sharing 1 Bln Premium', price:'5.000'},
+      {label:'Sharing 1 Thn Standar', price:'10.000'},
+      {label:'Sharing 1 Thn Premium', price:'12.000'},
+      {label:'Private 1 Bln Standar', price:'24.500'},
+      {label:'Private 1 Bln Premium', price:'29.000'},
+    ],
+    note:'Sharing limit wajar. Garansi jika BF. Tanya stok.'
+  },
+  {
+    id:7, name:'Vidio', cat:'streaming', icon:'📡', color:'#fd79a8',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'Private 1 Tahun TV', price:'1.000'},
+      {label:'Private 1 Bulan Mobile', price:'19.000'},
+      {label:'Sharing 1 Bulan Mobile', price:'10.000'},
+    ],
+    note:'Tanya stok sebelum order.'
+  },
+  {
+    id:8, name:'Viu', cat:'streaming', icon:'🎭', color:'#a29bfe',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'1 Tahun Private', price:'500'},
+      {label:'Lifetime', price:'1.000'},
+    ],
+    note:'10–12 bulan dihitung 1 tahun. Tanya stok.'
+  },
+  {
+    id:9, name:'WeTV', cat:'streaming', icon:'📱', color:'#55efc4',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'1 Bulan Sharing', price:'4.000'},
+      {label:'1 Bulan Private', price:'25.000'},
+    ],
+    note:'Tanya stok sebelum bayar.'
+  },
+  {
+    id:10, name:'Youku', cat:'streaming', icon:'🇨🇳', color:'#74b9ff',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'1 Bulan Sharing', price:'6.000'},
+      {label:'1 Tahun Sharing', price:'10.000'},
+    ],
+    note:'Acc seller. Sharing. Tanya stok.'
+  },
+  {
+    id:11, name:'Bstation', cat:'streaming', icon:'📺', color:'#00cec9',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'1 Bulan Sharing', price:'6.000'},
+      {label:'1 Tahun Sharing', price:'10.500'},
+    ],
+    note:'Acc seller. Full garansi. Tanya stok.'
+  },
+  {
+    id:12, name:'Dramabox', cat:'streaming', icon:'🎬', color:'#fd79a8',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'1 Bulan Sharing', price:'10.000'},
+      {label:'1 Tahun Sharing', price:'20.000'},
+    ],
+    note:'1 Bulan garansi 25 hari. 1 Tahun full garansi. Nonton via web.'
+  },
+  {
+    id:13, name:'Spotify', cat:'musik', icon:'🎵', color:'#1db954',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'1 Bulan Inplan', price:'12.000'},
+      {label:'1 Bulan No Garansi', price:'6.000'},
+      {label:'1 Bulan Garansi 7 Hari', price:'12.000'},
+      {label:'Family Plan 1 Bulan', price:'16.000'},
+    ],
+    note:'Family plan bisa untuk beberapa orang. Tanya stok.'
+  },
+  {
+    id:14, name:'YouTube Premium', cat:'musik', icon:'▶️', color:'#ff0000',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'1 Bulan Family Plan', price:'2.000'},
+      {label:'1 Bulan Individual Plan', price:'3.000'},
+      {label:'1 Bulan Head', price:'3.500'},
+      {label:'1 Bulan Head Acc Seller', price:'4.000'},
+    ],
+    note:'Email buyer wajib fresh. Family plan via invite. Famhead bisa invite 5 orang.'
+  },
+  {
+    id:15, name:'Apple Music', cat:'musik', icon:'🍎', color:'#fc3c44',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'1 Bulan Via Invite', price:'5.000'},
+      {label:'1 Bulan Famhead', price:'8.000'},
+      {label:'1 Bulan Inplan', price:'7.500'},
+    ],
+    note:'Only Android. Famhead bisa invite 5 orang. Tanya stok.'
+  },
+  {
+    id:16, name:'ChatGPT Plus', cat:'produktif', icon:'🤖', color:'#10a37f',
+    badge:'HOT', badgeColor:'#10a37f',
+    prices:[
+      {label:'1 Bulan Invite', price:'6.000'},
+      {label:'1 Bulan Sharing', price:'5.000'},
+      {label:'1 Bulan Private (No Garansi)', price:'8.500'},
+      {label:'1 Bulan Bisnis', price:'9.000'},
+    ],
+    note:'Garansi jika akun BF / tidak premium. Tanya stok.'
+  },
+  {
+    id:17, name:'GetContact', cat:'produktif', icon:'📞', color:'#6c5ce7',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'1 Bulan', price:'8.000'},
+    ],
+    note:'Tanya stok sebelum order.'
+  },
+  {
+    id:18, name:'Zoom', cat:'produktif', icon:'📹', color:'#2d8cff',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'14 Hari', price:'2.000'},
+    ],
+    note:'Acc seller. Tanya stok.'
+  },
+  {
+    id:19, name:'Weekly Diamond Pass', cat:'topup', icon:'💎', color:'#a29bfe',
+    badge:'GAME', badgeColor:'#6c5ce7',
+    prices:[
+      {label:'WDP Fast (1–5 menit)', price:'27.500'},
+      {label:'WDP 1x ID', price:'22.000'},
+      {label:'WDP Promo', price:'25.500'},
+      {label:'WDP Slow (1–5 jam)', price:'26.500'},
+    ],
+    note:'Order via ID & Server. Tanya stok sebelum bayar. Ready 24 jam.'
+  },
+  {
+    id:20, name:'Wink Account', cat:'lainnya', icon:'📷', color:'#fdcb6e',
+    badge:'', badgeColor:'',
+    prices:[
+      {label:'7 Hari Acc Buyer', price:'1.000'},
+      {label:'7 Hari Acc Seller', price:'4.000'},
+      {label:'1 Bulan Acc Buyer', price:'5.000'},
+    ],
+    note:'Acc buyer wajib fresh. Acc ke-verif 3x = hangus. Tanya stok.'
+  },
+];
+
+let activeCat = 'all';
+
+function setcat(btn, cat) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  activeCat = cat;
+  render();
+}
+
+function render() {
+  const q = document.getElementById('srch').value.toLowerCase();
+  const grid = document.getElementById('prodGrid');
+  const filtered = products.filter(p => {
+    const matchCat = activeCat === 'all' || p.cat === activeCat;
+    const matchQ = p.name.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty"><i class="fa-solid fa-box-open"></i>Produk tidak ditemukan</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => `
+    <div class="pc rv">
+      <div class="pc-head" style="background:${p.color}18">
+        ${p.badge ? `<span class="pc-badge" style="background:${p.badgeColor}">${p.badge}</span>` : ''}
+        <span style="line-height:1">${p.icon}</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-cat">${p.cat}</div>
+        <div class="pc-name">${p.name}</div>
+        <table class="price-table">
+          ${p.prices.map(pr => `<tr><td>${pr.label}</td><td>Rp ${pr.price}</td></tr>`).join('')}
+        </table>
+        <div class="pc-note"><i class="fa-solid fa-circle-info"></i>${p.note}</div>
+        <a href="${WA}?text=Halo%20Epennzy!%20Mau%20order%20${encodeURIComponent(p.name)}" target="_blank" class="order-btn">
+          <i class="fa-brands fa-whatsapp"></i>Order via WhatsApp
+        </a>
+      </div>
+    </div>
+  `).join('');
+
+  document.querySelectorAll('.rv').forEach(r => {
+    requestAnimationFrame(() => r.classList.add('on'));
+  });
+}
+
+function toggleTheme(){const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';localStorage.setItem('epz',h.dataset.theme);}
+(()=>{const t=localStorage.getItem('epz');if(t)document.documentElement.dataset.theme=t;})();
+function toggleMob(){document.getElementById('mn').classList.toggle('op');}
+
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(r=>io.observe(r));
+
+render();
+</script>
+</body>
+</html>

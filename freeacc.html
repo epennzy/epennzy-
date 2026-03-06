@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Epennzy — Free Acc</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root[data-theme="dark"]{--bg:#08080e;--bg2:#0d0d18;--card:#111120;--card2:#181828;--border:#21213a;--border2:#2e2e50;--accent:#e84393;--a2:#6c5ce7;--a3:#00cec9;--text:#eeeef8;--muted:#8888aa;--faint:#44445a;--glow:rgba(232,67,147,.25);--glow2:rgba(108,92,231,.2);}
+:root[data-theme="light"]{--bg:#fff7fb;--bg2:#ffe8f4;--card:#fff;--card2:#fdf0f8;--border:#f0d0e4;--border2:#e0b8d4;--accent:#c82070;--a2:#4a38c8;--a3:#007f7c;--text:#140010;--muted:#8a4060;--faint:#c090b0;--glow:rgba(200,32,112,.14);--glow2:rgba(74,56,200,.12);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+nav{position:fixed;top:0;inset-x:0;z-index:200;height:58px;background:rgba(8,8,14,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+[data-theme="light"] nav{background:rgba(255,247,251,.88);}
+.nw{max-width:1140px;margin:0 auto;height:100%;display:flex;align-items:center;padding:0 1.5rem;gap:.75rem;}
+.logo{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:1.1rem;color:var(--text);text-decoration:none;flex-shrink:0;}
+.logo i{color:#6c5ce7;font-size:.85rem;}.logo b{color:#6c5ce7;}.logo small{font-size:.7rem;color:var(--faint);margin-left:1px;}
+.nl{display:flex;gap:2px;margin-left:auto;}
+.nl a{display:flex;align-items:center;gap:.35rem;padding:.38rem .82rem;border-radius:7px;font-size:.8rem;font-weight:600;color:var(--muted);text-decoration:none;transition:.18s;white-space:nowrap;}
+.nl a i{font-size:.72rem;}.nl a:hover{background:var(--card2);color:var(--text);}.nl a.on{background:#6c5ce7;color:#fff;box-shadow:0 2px 14px rgba(108,92,231,.28);}
+.na{display:flex;gap:.45rem;align-items:center;}
+.ib{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:.18s;}
+.ib:hover{border-color:var(--accent);color:var(--accent);}
+.hm{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:5px;}
+.hm span{display:block;width:19px;height:2px;background:var(--muted);border-radius:2px;}
+.mn{display:none;position:fixed;top:58px;inset-x:0;bottom:0;z-index:199;background:var(--bg2);border-top:1px solid var(--border);flex-direction:column;padding:1.2rem;gap:.35rem;overflow-y:auto;}
+.mn.op{display:flex;animation:ms .2s ease;}
+.mn a{display:flex;align-items:center;gap:.7rem;padding:.78rem .95rem;border-radius:9px;font-size:.93rem;font-weight:600;color:var(--muted);text-decoration:none;transition:.16s;}
+.mn a:hover,.mn a.on{background:#6c5ce7;color:#fff;}
+.mn a i{width:17px;text-align:center;font-size:.82rem;}
+@keyframes ms{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+@media(max-width:800px){.nl{display:none;}.hm{display:flex;}}
+
+main{padding-top:58px;}
+.ph{padding:3.5rem 1.5rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.ph::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,var(--glow),transparent 70%);pointer-events:none;}
+.chip{display:inline-flex;align-items:center;gap:.42rem;background:var(--card);border:1px solid var(--border2);border-radius:100px;padding:.3rem .95rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:1.3px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;}
+.ph h1{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:.7rem;}
+.ph h1 em{font-style:normal;background:linear-gradient(125deg,var(--accent),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ph p{color:var(--muted);font-size:.92rem;max-width:500px;margin:0 auto;line-height:1.7;}
+
+.content{max-width:920px;margin:0 auto;padding:1.5rem 1.5rem 5rem;}
+
+/* TUTORIAL */
+.tut-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:1.6rem;margin-bottom:2rem;}
+.tut-header{display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem;}
+.tut-header i{color:var(--accent);font-size:1rem;}
+.tut-header h2{font-size:1rem;font-weight:700;}
+.steps{display:flex;flex-direction:column;gap:.65rem;}
+.step{display:flex;align-items:flex-start;gap:.85rem;}
+.step-n{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--a2));color:#fff;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.step p{font-size:.84rem;color:var(--muted);line-height:1.65;padding-top:3px;}
+.step p strong{color:var(--text);}
+
+/* NOTICE */
+.notice{background:var(--card2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:10px;padding:1rem 1.2rem;margin-bottom:2rem;display:flex;gap:.75rem;align-items:flex-start;font-size:.83rem;color:var(--muted);line-height:1.65;}
+.notice i{color:var(--accent);font-size:.9rem;margin-top:2px;flex-shrink:0;}
+
+/* EMAIL LIST */
+.list-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.list-meta h2{font-size:1rem;font-weight:700;}
+.list-meta span{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--faint);background:var(--card2);border:1px solid var(--border);padding:.2rem .6rem;border-radius:6px;}
+.email-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.7rem;}
+.email-row{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;display:flex;align-items:center;gap:.75rem;transition:.2s;}
+.email-row:hover{border-color:var(--border2);}
+.e-num{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--faint);width:22px;text-align:center;flex-shrink:0;}
+.e-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0;}
+.e-mail{font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--text);flex:1;word-break:break-all;line-height:1.4;}
+.e-btns{display:flex;gap:.4rem;flex-shrink:0;}
+.e-btn{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:var(--card2);color:var(--muted);cursor:pointer;font-size:.72rem;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:.18s;}
+.e-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(8px);background:var(--accent);color:#fff;padding:.65rem 1.4rem;border-radius:9px;font-weight:700;font-size:.82rem;z-index:999;display:none;align-items:center;gap:.45rem;white-space:nowrap;box-shadow:0 4px 20px var(--glow);}
+.toast.show{display:flex;animation:ti .25s ease;}
+@keyframes ti{from{opacity:0;transform:translateX(-50%) translateY(12px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+
+footer{text-align:center;padding:1.8rem 1.5rem;border-top:1px solid var(--border);color:var(--faint);font-size:.76rem;font-family:'JetBrains Mono',monospace;}
+footer b{color:#6c5ce7;}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .45s,transform .45s;}
+.rv.on{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nw">
+    <a href="index.html" class="logo"><i class="fa-solid fa-star"></i>Epenn<b>zy</b><small></></small></a>
+    <div class="nl">
+      <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+      <a href="store.html"><i class="fa-solid fa-bag-shopping"></i>Store</a>
+      <a href="coding.html"><i class="fa-solid fa-code"></i>Coding</a>
+      <a href="freeacc.html" class="on"><i class="fa-solid fa-envelope-open-text"></i>Free Acc</a>
+      <a href="about.html"><i class="fa-solid fa-circle-user"></i>About</a>
+    </div>
+    <div class="na">
+      <button class="ib" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+      <button class="hm" onclick="toggleMob()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mn" id="mn">
+  <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+  <a href="store.html"><i class="fa-solid fa-bag-shopping"></i>Store</a>
+  <a href="coding.html"><i class="fa-solid fa-code"></i>Coding</a>
+  <a href="freeacc.html" class="on"><i class="fa-solid fa-envelope-open-text"></i>Free Acc</a>
+  <a href="about.html"><i class="fa-solid fa-circle-user"></i>About</a>
+</div>
+
+<main>
+  <div class="ph rv">
+    <div class="chip"><i class="fa-solid fa-envelope-open-text" style="font-size:.65rem"></i>Free Acc</div>
+    <h1>Email Gratis untuk<br/><em>Alight Motion</em> Premium</h1>
+    <p>Klik email di bawah untuk langsung membuka inbox-nya, atau salin untuk digunakan di aplikasi.</p>
+  </div>
+
+  <div class="content">
+    <!-- TUTORIAL -->
+    <div class="tut-card rv">
+      <div class="tut-header">
+        <i class="fa-solid fa-list-ol"></i>
+        <h2>Tutorial Login Alight Motion</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><p>Salin salah satu email dari daftar di bawah.</p></div>
+        <div class="step"><div class="step-n">2</div><p>Tempel di <strong>WhatsApp (Pesan diri sendiri)</strong> agar mudah disalin ulang nanti.</p></div>
+        <div class="step"><div class="step-n">3</div><p>Buka aplikasi <strong>Alight Motion</strong> di HP kamu.</p></div>
+        <div class="step"><div class="step-n">4</div><p>Pilih opsi <strong>Login dengan Email</strong>.</p></div>
+        <div class="step"><div class="step-n">5</div><p>Tap email yang sudah ditempel di WhatsApp tadi, lalu kirim.</p></div>
+        <div class="step"><div class="step-n">6</div><p>Buka inbox email tersebut — gunakan tombol <strong>Buka Inbox</strong> di sebelah kanan email di bawah.</p></div>
+        <div class="step"><div class="step-n">7</div><p>Cari email dari Alight Motion, lalu <strong>klik link login</strong> yang ada di dalam email tersebut.</p></div>
+        <div class="step"><div class="step-n">8</div><p>Selesai — kamu sudah masuk ke Alight Motion dengan akun premium.</p></div>
+      </div>
+    </div>
+
+    <!-- NOTICE -->
+    <div class="notice rv">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <span>Jangan ubah password atau data akun karena email ini digunakan bersama. Jika ada email yang tidak berfungsi, coba email lainnya. Daftar diperbarui secara berkala.</span>
+    </div>
+
+    <!-- LIST -->
+    <div class="rv">
+      <div class="list-meta">
+        <h2><i class="fa-solid fa-inbox" style="color:var(--accent);margin-right:.4rem;font-size:.88rem"></i>Daftar Email</h2>
+        <span>30 email aktif</span>
+      </div>
+      <div class="email-grid" id="emailGrid"></div>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"><i class="fa-solid fa-check"></i><span id="toastMsg">Disalin!</span></div>
+
+<footer><p>Copyright &copy; 2025 <b>Epennzy</b>. All rights reserved.</p></footer>
+
+<script>
+const emails = [
+  {mail:'vitalpanin@sollutiongpt.live', link:'https://generator.email/vitalpanin@sollutiongpt.live'},
+  {mail:'43696466@annd.us', link:'https://generator.email/43696466@annd.us'},
+  {mail:'ju6r5o@oyisam.my', link:'https://generator.email/ju6r5o@oyisam.my'},
+  {mail:'alekswhite@yangdaye-ds.cc', link:'https://generator.email/alekswhite@yangdaye-ds.cc'},
+  {mail:'bluallan@nguyentinhblog.com', link:'https://generator.email/bluallan@nguyentinhblog.com'},
+  {mail:'childojc@shopy.club', link:'https://generator.email/childojc@shopy.club'},
+  {mail:'svenozz@realsoul.in', link:'https://generator.email/svenozz@realsoul.in'},
+  {mail:'vektomir2048@akunku.shop', link:'https://generator.email/vektomir2048@akunku.shop'},
+  {mail:'surihati@skuno.click', link:'https://generator.email/surihati@skuno.click'},
+  {mail:'bcenter@relivacca.cfd', link:'https://generator.email/bcenter@relivacca.cfd'},
+  {mail:'03611004@52mails.com', link:'https://generator.email/03611004@52mails.com'},
+  {mail:'margaritaffonyt@coffeepancakewafflebacon.com', link:'https://generator.email/margaritaffonyt@coffeepancakewafflebacon.com'},
+  {mail:'koznovv@edudingy.cfd', link:'https://generator.email/koznovv@edudingy.cfd'},
+  {mail:'selenaoda@shoha.cc', link:'https://generator.email/selenaoda@shoha.cc'},
+  {mail:'plisovyi@kodeholik.site', link:'https://generator.email/plisovyi@kodeholik.site'},
+  {mail:'jaysonyamaguchi@ilustrosonic.com', link:'https://generator.email/jaysonyamaguchi@ilustrosonic.com'},
+  {mail:'skl1m@thhdfws.us', link:'https://generator.email/skl1m@thhdfws.us'},
+  {mail:'ab55793884@waroengkuy.com', link:'https://generator.email/ab55793884@waroengkuy.com'},
+  {mail:'pedrooch66@code-gmail.com', link:'https://generator.email/pedrooch66@code-gmail.com'},
+  {mail:'rustamergashev@nladsgiare.shop', link:'https://generator.email/rustamergashev@nladsgiare.shop'},
+  {mail:'kozheko1@houtlook.xyz', link:'https://generator.email/kozheko1@houtlook.xyz'},
+  {mail:'mirorarq@drablox.com', link:'https://generator.email/mirorarq@drablox.com'},
+  {mail:'reddevili@getmail1.com', link:'https://generator.email/reddevili@getmail1.com'},
+  {mail:'lysegermain@bytonf.com', link:'https://generator.email/lysegermain@bytonf.com'},
+  {mail:'ogger54@ilustrosonic.com', link:'https://generator.email/ogger54@ilustrosonic.com'},
+  {mail:'romchukivashko@primejetnet.com', link:'https://generator.email/romchukivashko@primejetnet.com'},
+  {mail:'aoberestova@igdinhcao.com', link:'https://generator.email/aoberestova@igdinhcao.com'},
+  {mail:'soniaselvarajan91@gaskuy.me', link:'https://generator.email/soniaselvarajan91@gaskuy.me'},
+  {mail:'urtodox@aikoreaedu.com', link:'https://generator.email/urtodox@aikoreaedu.com'},
+  {mail:'windybill@trypodgrid.com', link:'https://generator.email/windybill@trypodgrid.com'},
+];
+
+function renderEmails() {
+  const g = document.getElementById('emailGrid');
+  g.innerHTML = emails.map((e, i) => `
+    <div class="email-row">
+      <span class="e-num">${String(i+1).padStart(2,'0')}</span>
+      <span class="e-dot"></span>
+      <span class="e-mail">${e.mail}</span>
+      <div class="e-btns">
+        <button class="e-btn" onclick="copyMail('${e.mail}')" title="Salin Email"><i class="fa-solid fa-copy"></i></button>
+        <a class="e-btn" href="${e.link}" target="_blank" title="Buka Inbox"><i class="fa-solid fa-inbox"></i></a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function copyMail(mail) {
+  navigator.clipboard.writeText(mail);
+  showToast('Email disalin!');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function toggleTheme(){const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';localStorage.setItem('epz',h.dataset.theme);}
+(()=>{const t=localStorage.getItem('epz');if(t)document.documentElement.dataset.theme=t;})();
+function toggleMob(){document.getElementById('mn').classList.toggle('op');}
+
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(r=>io.observe(r));
+
+renderEmails();
+</script>
+</body>
+</html>

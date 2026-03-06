@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Epennzy — Coding Tools</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root[data-theme="dark"]{--bg:#08080e;--bg2:#0d0d18;--card:#111120;--card2:#181828;--border:#21213a;--border2:#2e2e50;--accent:#00cec9;--a2:#6c5ce7;--a3:#e84393;--text:#eeeef8;--muted:#8888aa;--faint:#44445a;--glow:rgba(0,206,201,.22);--glow2:rgba(108,92,231,.2);}
+:root[data-theme="light"]{--bg:#f5ffff;--bg2:#e5fffe;--card:#fff;--card2:#effffe;--border:#c8f0ee;--border2:#a0dcd8;--accent:#008884;--a2:#4a38c8;--a3:#cc2872;--text:#001414;--muted:#3a7070;--faint:#80b8b8;--glow:rgba(0,136,132,.14);--glow2:rgba(74,56,200,.12);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+nav{position:fixed;top:0;inset-x:0;z-index:200;height:58px;background:rgba(8,8,14,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+[data-theme="light"] nav{background:rgba(245,255,255,.88);}
+.nw{max-width:1140px;margin:0 auto;height:100%;display:flex;align-items:center;padding:0 1.5rem;gap:.75rem;}
+.logo{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:1.1rem;color:var(--text);text-decoration:none;flex-shrink:0;}
+.logo i{color:#6c5ce7;font-size:.85rem;}.logo b{color:#6c5ce7;}.logo small{font-size:.7rem;color:var(--faint);margin-left:1px;}
+.nl{display:flex;gap:2px;margin-left:auto;}
+.nl a{display:flex;align-items:center;gap:.35rem;padding:.38rem .82rem;border-radius:7px;font-size:.8rem;font-weight:600;color:var(--muted);text-decoration:none;transition:.18s;white-space:nowrap;}
+.nl a i{font-size:.72rem;}.nl a:hover{background:var(--card2);color:var(--text);}.nl a.on{background:#6c5ce7;color:#fff;box-shadow:0 2px 14px rgba(108,92,231,.28);}
+.na{display:flex;gap:.45rem;align-items:center;}
+.ib{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:.18s;}
+.ib:hover{border-color:var(--accent);color:var(--accent);}
+.hm{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:5px;}
+.hm span{display:block;width:19px;height:2px;background:var(--muted);border-radius:2px;}
+.mn{display:none;position:fixed;top:58px;inset-x:0;bottom:0;z-index:199;background:var(--bg2);border-top:1px solid var(--border);flex-direction:column;padding:1.2rem;gap:.35rem;overflow-y:auto;}
+.mn.op{display:flex;animation:ms .2s ease;}
+.mn a{display:flex;align-items:center;gap:.7rem;padding:.78rem .95rem;border-radius:9px;font-size:.93rem;font-weight:600;color:var(--muted);text-decoration:none;transition:.16s;}
+.mn a:hover,.mn a.on{background:#6c5ce7;color:#fff;}
+.mn a i{width:17px;text-align:center;font-size:.82rem;}
+@keyframes ms{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+@media(max-width:800px){.nl{display:none;}.hm{display:flex;}}
+
+main{padding-top:58px;}
+.ph{padding:3.5rem 1.5rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.ph::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,var(--glow),transparent 70%);pointer-events:none;}
+.chip{display:inline-flex;align-items:center;gap:.42rem;background:var(--card);border:1px solid var(--border2);border-radius:100px;padding:.3rem .95rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:1.3px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;}
+.ph h1{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:.7rem;}
+.ph h1 em{font-style:normal;background:linear-gradient(125deg,var(--accent),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ph p{color:var(--muted);font-size:.92rem;max-width:480px;margin:0 auto;line-height:1.7;}
+
+.content{max-width:1140px;margin:0 auto;padding:1.5rem 1.5rem 5rem;}
+
+.cat-sec{margin-bottom:3.5rem;}
+.cat-hd{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border);}
+.cat-ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;flex-shrink:0;margin-top:2px;}
+.cat-hd-text{}
+.cat-hd-text h2{font-size:1.1rem;font-weight:700;margin-bottom:.2rem;}
+.cat-hd-text p{font-size:.82rem;color:var(--muted);}
+
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:.9rem;}
+.tc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem;transition:.22s;position:relative;}
+.tc::before{content:'';position:absolute;top:0;inset-x:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--a2));border-radius:2px 2px 0 0;transform:scaleX(0);transition:.3s;transform-origin:left;}
+.tc:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18);}
+.tc:hover::before{transform:scaleX(1);}
+.tc-top{display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem;}
+.tc-ico{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff;flex-shrink:0;}
+.tc-name{font-size:.95rem;font-weight:700;line-height:1.2;}
+.tc-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);background:var(--bg2);border:1px solid var(--border);padding:.15rem .45rem;border-radius:4px;display:inline-block;margin-top:.25rem;}
+.tc-desc{font-size:.82rem;color:var(--muted);line-height:1.7;}
+.rec{position:absolute;top:10px;right:10px;font-size:.6rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:var(--accent);color:var(--bg);padding:.18rem .5rem;border-radius:5px;}
+.stars{display:flex;gap:2px;margin-top:.75rem;}
+.stars i{font-size:.65rem;color:var(--accent);}
+.stars .dim{color:var(--border2);}
+
+footer{text-align:center;padding:1.8rem 1.5rem;border-top:1px solid var(--border);color:var(--faint);font-size:.76rem;font-family:'JetBrains Mono',monospace;}
+footer b{color:#6c5ce7;}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .45s,transform .45s;}
+.rv.on{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nw">
+    <a href="index.html" class="logo"><i class="fa-solid fa-star"></i>Epenn<b>zy</b><small></></small></a>
+    <div class="nl">
+      <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+      <a href="store.html"><i class="fa-solid fa-bag-shopping"></i>Store</a>
+      <a href="coding.html" class="on"><i class="fa-solid fa-code"></i>Coding</a>
+      <a href="freeacc.html"><i class="fa-solid fa-envelope-open-text"></i>Free Acc</a>
+      <a href="about.html"><i class="fa-solid fa-circle-user"></i>About</a>
+    </div>
+    <div class="na">
+      <button class="ib" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+      <button class="hm" onclick="toggleMob()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mn" id="mn">
+  <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+  <a href="store.html"><i class="fa-solid fa-bag-shopping"></i>Store</a>
+  <a href="coding.html" class="on"><i class="fa-solid fa-code"></i>Coding</a>
+  <a href="freeacc.html"><i class="fa-solid fa-envelope-open-text"></i>Free Acc</a>
+  <a href="about.html"><i class="fa-solid fa-circle-user"></i>About</a>
+</div>
+
+<main>
+  <div class="ph rv">
+    <div class="chip"><i class="fa-solid fa-terminal" style="font-size:.65rem"></i>// Dev Tools</div>
+    <h1>Rekomendasi <em>Coding Tools</em></h1>
+    <p>Koleksi tools terbaik yang layak ada di setup coding kamu — dari terminal hingga package manager.</p>
+  </div>
+
+  <div class="content">
+
+    <!-- TERMINAL -->
+    <div class="cat-sec">
+      <div class="cat-hd rv">
+        <div class="cat-ico" style="background:linear-gradient(135deg,#00cec9,#0984e3)"><i class="fa-solid fa-terminal"></i></div>
+        <div class="cat-hd-text">
+          <h2>Terminal &amp; Shell</h2>
+          <p>Command-line interface yang membuat workflow kamu jauh lebih cepat dan efisien</p>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <div class="tc rv">
+          <span class="rec">Top Pick</span>
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#3d3d3d"><i class="fa-solid fa-terminal"></i></div>
+            <div><div class="tc-name">Windows Terminal</div><span class="tc-tag">Windows</span></div>
+          </div>
+          <div class="tc-desc">Terminal modern dari Microsoft dengan tab, split pane, GPU acceleration, dan sangat customizable. Mendukung PowerShell, CMD, dan WSL dalam satu jendela.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#1a1a2e"><i class="fa-brands fa-apple"></i></div>
+            <div><div class="tc-name">iTerm2</div><span class="tc-tag">macOS</span></div>
+          </div>
+          <div class="tc-desc">Terminal pengganti terbaik untuk macOS. Split pane, search, autocomplete, tmux integration, dan bisa di-script dengan Python API.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star dim"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#e34c26"><i class="fa-solid fa-bolt"></i></div>
+            <div><div class="tc-name">Alacritty</div><span class="tc-tag">Cross-Platform</span></div>
+          </div>
+          <div class="tc-desc">Terminal tercepat berkat GPU rendering. Ringan, minimalis, konfigurasi via TOML. Pilihan tepat buat yang butuh performa terminal maksimal.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star dim"></i></div>
+        </div>
+        <div class="tc rv">
+          <span class="rec">Top Pick</span>
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#3a3f4b"><i class="fa-solid fa-fish"></i></div>
+            <div><div class="tc-name">Fish Shell</div><span class="tc-tag">Shell</span></div>
+          </div>
+          <div class="tc-desc">Shell paling user-friendly dengan autosuggestion pintar, syntax highlighting real-time, dan konfigurasi mudah tanpa scripting rumit.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#2b2d3a"><i class="fa-solid fa-star"></i></div>
+            <div><div class="tc-name">Zsh + Oh My Zsh</div><span class="tc-tag">Shell</span></div>
+          </div>
+          <div class="tc-desc">Kombinasi Zsh dengan framework Oh My Zsh memberikan ratusan plugin, theme, dan alias cerdas. Standar industri untuk developer profesional.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#1c1f26"><i class="fa-solid fa-expand"></i></div>
+            <div><div class="tc-name">tmux</div><span class="tc-tag">Multiplexer</span></div>
+          </div>
+          <div class="tc-desc">Terminal multiplexer yang memungkinkan beberapa sesi terminal berjalan bersamaan. Sangat berguna untuk server remote dan workflow yang kompleks.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star dim"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDITOR -->
+    <div class="cat-sec">
+      <div class="cat-hd rv">
+        <div class="cat-ico" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe)"><i class="fa-solid fa-code"></i></div>
+        <div class="cat-hd-text">
+          <h2>Code Editor &amp; IDE</h2>
+          <p>Lingkungan pengembangan yang nyaman, cepat, dan punya fitur yang kamu butuhkan</p>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <div class="tc rv">
+          <span class="rec">Paling Populer</span>
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#007acc"><i class="fa-solid fa-code"></i></div>
+            <div><div class="tc-name">VS Code</div><span class="tc-tag">Cross-Platform</span></div>
+          </div>
+          <div class="tc-desc">Editor paling populer di dunia. Gratis, open-source, ekstensi berlimpah, debugging terintegrasi, dan IntelliSense untuk hampir semua bahasa pemrograman.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#1f2029"><i class="fa-solid fa-leaf"></i></div>
+            <div><div class="tc-name">Neovim</div><span class="tc-tag">Terminal-based</span></div>
+          </div>
+          <div class="tc-desc">Evolusi Vim yang sangat extensible dengan Lua scripting. Untuk developer yang mengutamakan efisiensi keyboard penuh dan customization tanpa batas.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star dim"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#fe315d"><i class="fa-solid fa-jet-fighter-up"></i></div>
+            <div><div class="tc-name">JetBrains IDE</div><span class="tc-tag">Professional</span></div>
+          </div>
+          <div class="tc-desc">Suite IDE profesional dengan refactoring canggih dan deep code analysis. Tersedia IntelliJ IDEA, WebStorm, PyCharm, dan banyak lagi.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#0d1b2a"><i class="fa-solid fa-wind"></i></div>
+            <div><div class="tc-name">Zed Editor</div><span class="tc-tag">macOS / Linux</span></div>
+          </div>
+          <div class="tc-desc">Editor generasi berikutnya ditulis dalam Rust. Sangat cepat, kolaborasi real-time built-in, dan AI integration. Masa depan code editor.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star dim"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GIT -->
+    <div class="cat-sec">
+      <div class="cat-hd rv">
+        <div class="cat-ico" style="background:linear-gradient(135deg,#f97316,#ea580c)"><i class="fa-brands fa-git-alt"></i></div>
+        <div class="cat-hd-text">
+          <h2>Version Control &amp; Git Tools</h2>
+          <p>Kelola kode, riwayat perubahan, dan kolaborasi tim dengan efisien</p>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <div class="tc rv">
+          <span class="rec">Wajib Punya</span>
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#f05032"><i class="fa-brands fa-git-alt"></i></div>
+            <div><div class="tc-name">Git</div><span class="tc-tag">Version Control</span></div>
+          </div>
+          <div class="tc-desc">Sistem version control terdistribusi yang menjadi standar industri. Tidak ada workflow development modern yang bisa berjalan tanpanya.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#24292e"><i class="fa-brands fa-github"></i></div>
+            <div><div class="tc-name">GitHub CLI</div><span class="tc-tag">CLI Tool</span></div>
+          </div>
+          <div class="tc-desc">Kelola repositori, pull request, dan issues langsung dari terminal. Workflow yang jauh lebih efisien dibanding buka browser terus.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star dim"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#1f2937"><i class="fa-solid fa-code-branch"></i></div>
+            <div><div class="tc-name">Lazygit</div><span class="tc-tag">TUI</span></div>
+          </div>
+          <div class="tc-desc">Antarmuka Git berbasis terminal yang intuitif. Visualisasi branch, staging, dan merge menjadi sangat mudah tanpa perlu ingat banyak perintah.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACKAGE MANAGER -->
+    <div class="cat-sec">
+      <div class="cat-hd rv">
+        <div class="cat-ico" style="background:linear-gradient(135deg,#ec4899,#db2777)"><i class="fa-solid fa-box-open"></i></div>
+        <div class="cat-hd-text">
+          <h2>Package Manager &amp; Runtime</h2>
+          <p>Manajemen dependensi dan environment yang cepat dan efisien</p>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <div class="tc rv">
+          <span class="rec">Tercepat</span>
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#f69220"><i class="fa-solid fa-box-open"></i></div>
+            <div><div class="tc-name">Bun</div><span class="tc-tag">JS Runtime</span></div>
+          </div>
+          <div class="tc-desc">All-in-one JavaScript runtime baru yang sangat cepat. Bisa jadi pengganti Node.js, npm, dan Webpack sekaligus — install package 10-25x lebih cepat.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#f9a825"><i class="fa-solid fa-cubes"></i></div>
+            <div><div class="tc-name">pnpm</div><span class="tc-tag">Node Package</span></div>
+          </div>
+          <div class="tc-desc">Package manager Node.js yang hemat disk menggunakan symlink untuk shared packages. 2-3x lebih cepat dari npm dengan storage yang jauh lebih efisien.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star dim"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#3572A5"><i class="fa-brands fa-python"></i></div>
+            <div><div class="tc-name">uv</div><span class="tc-tag">Python</span></div>
+          </div>
+          <div class="tc-desc">Package manager Python ultra-cepat ditulis dalam Rust. Pengganti pip yang 10-100x lebih cepat, dengan virtual environment dan dependency resolution yang modern.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        </div>
+        <div class="tc rv">
+          <div class="tc-top">
+            <div class="tc-ico" style="background:#7e5bef"><i class="fa-solid fa-wine-bottle"></i></div>
+            <div><div class="tc-name">Homebrew</div><span class="tc-tag">macOS / Linux</span></div>
+          </div>
+          <div class="tc-desc">Package manager tidak resmi untuk macOS dan Linux. Install hampir semua software developer hanya dengan satu perintah brew install.</div>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star dim"></i></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer><p>Copyright &copy; 2025 <b>Epennzy</b>. All rights reserved.</p></footer>
+
+<script>
+function toggleTheme(){const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';localStorage.setItem('epz',h.dataset.theme);}
+(()=>{const t=localStorage.getItem('epz');if(t)document.documentElement.dataset.theme=t;})();
+function toggleMob(){document.getElementById('mn').classList.toggle('op');}
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(r=>io.observe(r));
+</script>
+</body>
+</html>

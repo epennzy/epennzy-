@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Epennzy — About</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root[data-theme="dark"]{--bg:#08080e;--bg2:#0d0d18;--card:#111120;--card2:#181828;--border:#21213a;--border2:#2e2e50;--accent:#6c5ce7;--a2:#e84393;--a3:#00cec9;--text:#eeeef8;--muted:#8888aa;--faint:#44445a;--glow:rgba(108,92,231,.28);--glow2:rgba(232,67,147,.18);}
+:root[data-theme="light"]{--bg:#f7f7ff;--bg2:#efeffd;--card:#fff;--card2:#f0f0fc;--border:#ddddf2;--border2:#c5c5e8;--accent:#5040d8;--a2:#cc2872;--a3:#007f7c;--text:#0a0a1e;--muted:#5a5a80;--faint:#aaaac8;--glow:rgba(80,64,216,.14);--glow2:rgba(204,40,114,.1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+nav{position:fixed;top:0;inset-x:0;z-index:200;height:58px;background:rgba(8,8,14,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+[data-theme="light"] nav{background:rgba(247,247,255,.88);}
+.nw{max-width:1140px;margin:0 auto;height:100%;display:flex;align-items:center;padding:0 1.5rem;gap:.75rem;}
+.logo{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:1.1rem;color:var(--text);text-decoration:none;flex-shrink:0;}
+.logo i{color:var(--accent);font-size:.85rem;}.logo b{color:var(--accent);}.logo small{font-size:.7rem;color:var(--faint);margin-left:1px;}
+.nl{display:flex;gap:2px;margin-left:auto;}
+.nl a{display:flex;align-items:center;gap:.35rem;padding:.38rem .82rem;border-radius:7px;font-size:.8rem;font-weight:600;color:var(--muted);text-decoration:none;transition:.18s;white-space:nowrap;}
+.nl a i{font-size:.72rem;}.nl a:hover{background:var(--card2);color:var(--text);}.nl a.on{background:var(--accent);color:#fff;box-shadow:0 2px 14px var(--glow);}
+.na{display:flex;gap:.45rem;align-items:center;}
+.ib{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:.18s;}
+.ib:hover{border-color:var(--accent);color:var(--accent);}
+.hm{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:5px;}
+.hm span{display:block;width:19px;height:2px;background:var(--muted);border-radius:2px;}
+.mn{display:none;position:fixed;top:58px;inset-x:0;bottom:0;z-index:199;background:var(--bg2);border-top:1px solid var(--border);flex-direction:column;padding:1.2rem;gap:.35rem;overflow-y:auto;}
+.mn.op{display:flex;animation:ms .2s ease;}
+.mn a{display:flex;align-items:center;gap:.7rem;padding:.78rem .95rem;border-radius:9px;font-size:.93rem;font-weight:600;color:var(--muted);text-decoration:none;transition:.16s;}
+.mn a:hover,.mn a.on{background:var(--accent);color:#fff;}
+.mn a i{width:17px;text-align:center;font-size:.82rem;}
+@keyframes ms{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+@media(max-width:800px){.nl{display:none;}.hm{display:flex;}}
+
+main{padding-top:58px;}
+.ph{padding:3.5rem 1.5rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.ph::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,var(--glow),transparent 70%);pointer-events:none;}
+.chip{display:inline-flex;align-items:center;gap:.42rem;background:var(--card);border:1px solid var(--border2);border-radius:100px;padding:.3rem .95rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:1.3px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;}
+.ph h1{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:.7rem;}
+.ph h1 em{font-style:normal;background:linear-gradient(125deg,var(--accent),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ph p{color:var(--muted);font-size:.92rem;max-width:480px;margin:0 auto;line-height:1.7;}
+
+.content{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 5rem;}
+
+/* PROFILE */
+.profile{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;margin-bottom:1.5rem;display:grid;grid-template-columns:auto 1fr;gap:1.8rem;align-items:start;}
+@media(max-width:600px){.profile{grid-template-columns:1fr;text-align:center;}}
+.av{position:relative;flex-shrink:0;}
+.av-img{width:100px;height:100px;border-radius:18px;background:linear-gradient(135deg,var(--accent),var(--a2));display:flex;align-items:center;justify-content:center;font-size:2.8rem;border:2px solid var(--border2);box-shadow:0 0 32px var(--glow);}
+.av-badge{position:absolute;bottom:-6px;right:-6px;width:26px;height:26px;border-radius:50%;background:var(--a2);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.65rem;border:2px solid var(--bg);}
+.pname{font-size:1.5rem;font-weight:800;letter-spacing:-.5px;margin-bottom:.2rem;}
+.prole{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--accent);letter-spacing:.5px;margin-bottom:.9rem;}
+.pbio{font-size:.87rem;color:var(--muted);line-height:1.78;margin-bottom:1.2rem;}
+.socials{display:flex;gap:.5rem;flex-wrap:wrap;}
+@media(max-width:600px){.socials{justify-content:center;}}
+.soc{display:inline-flex;align-items:center;gap:.38rem;padding:.42rem .9rem;border-radius:8px;border:1px solid var(--border);background:var(--card2);color:var(--muted);font-size:.78rem;font-weight:600;text-decoration:none;transition:.18s;}
+.soc:hover{border-color:var(--accent);color:var(--accent);}
+
+/* MISSION GRID */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:.9rem;margin-bottom:1.5rem;}
+.mc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.35rem;transition:.22s;}
+.mc:hover{border-color:var(--border2);transform:translateY(-2px);}
+.mc-ico{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--a2));display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff;margin-bottom:.9rem;}
+.mc h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem;}
+.mc p{font-size:.82rem;color:var(--muted);line-height:1.7;}
+
+/* SKILLS */
+.skills-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.6rem;margin-bottom:1.5rem;}
+.skills-card h3{font-size:.95rem;font-weight:700;margin-bottom:1.3rem;display:flex;align-items:center;gap:.5rem;}
+.skill{margin-bottom:1rem;}
+.skill:last-child{margin-bottom:0;}
+.skill-lbl{display:flex;justify-content:space-between;margin-bottom:.4rem;font-size:.82rem;font-weight:600;}
+.skill-lbl span:last-child{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent);}
+.skill-bar{height:5px;background:var(--bg2);border-radius:5px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--a2));width:0;transition:width 1s ease;}
+
+/* CONTACT */
+.cta{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;text-align:center;}
+.cta h3{font-size:1.1rem;font-weight:800;margin-bottom:.4rem;}
+.cta p{color:var(--muted);font-size:.86rem;margin-bottom:1.4rem;}
+.cta-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
+.cbtn{display:inline-flex;align-items:center;gap:.45rem;padding:.65rem 1.4rem;border-radius:9px;font-weight:700;font-size:.84rem;text-decoration:none;transition:.2s;}
+.cbtn-fill{background:var(--accent);color:#fff;box-shadow:0 4px 16px var(--glow);}
+.cbtn-fill:hover{transform:translateY(-2px);}
+.cbtn-ghost{background:var(--card2);border:1px solid var(--border2);color:var(--text);}
+.cbtn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+footer{text-align:center;padding:1.8rem 1.5rem;border-top:1px solid var(--border);color:var(--faint);font-size:.76rem;font-family:'JetBrains Mono',monospace;}
+footer b{color:var(--accent);}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .45s,transform .45s;}
+.rv.on{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nw">
+    <a href="index.html" class="logo"><i class="fa-solid fa-star"></i>Epenn<b>zy</b><small></></small></a>
+    <div class="nl">
+      <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+      <a href="store.html"><i class="fa-solid fa-bag-shopping"></i>Store</a>
+      <a href="coding.html"><i class="fa-solid fa-code"></i>Coding</a>
+      <a href="freeacc.html"><i class="fa-solid fa-envelope-open-text"></i>Free Acc</a>
+      <a href="about.html" class="on"><i class="fa-solid fa-circle-user"></i>About</a>
+    </div>
+    <div class="na">
+      <button class="ib" onclick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
+      <button class="hm" onclick="toggleMob()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mn" id="mn">
+  <a href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+  <a href="store.html"><i class="fa-solid fa-bag-shopping"></i>Store</a>
+  <a href="coding.html"><i class="fa-solid fa-code"></i>Coding</a>
+  <a href="freeacc.html"><i class="fa-solid fa-envelope-open-text"></i>Free Acc</a>
+  <a href="about.html" class="on"><i class="fa-solid fa-circle-user"></i>About</a>
+</div>
+
+<main>
+  <div class="ph rv">
+    <div class="chip"><i class="fa-solid fa-circle-user" style="font-size:.65rem"></i>About</div>
+    <h1>Siapa <em>Epennzy</em>?</h1>
+    <p>Kenalan lebih dekat dengan siapa yang ada di balik website ini dan alasan dibuatnya.</p>
+  </div>
+
+  <div class="content">
+    <!-- PROFILE -->
+    <div class="profile rv">
+      <div class="av">
+        <div class="av-img"><i class="fa-solid fa-user-astronaut" style="color:#fff;font-size:2.5rem"></i></div>
+        <div class="av-badge"><i class="fa-solid fa-star"></i></div>
+      </div>
+      <div>
+        <div class="pname">Epennzy</div>
+        <div class="prole">// Creator &amp; Web Developer</div>
+        <p class="pbio">Halo! Gua Epennzy, seorang kreator digital yang suka banget soal teknologi dan berbagi hal berguna ke sesama. Gua percaya akses ke tools dan resource berkualitas seharusnya bisa dinikmati semua orang.<br/><br/>Website ini lahir karena gua capek ngeliat orang susah nyari akun premium, tools coding yang bagus, atau email gratis yang masih works. Jadi gua kumpulin semuanya di satu tempat — Epennzy.</p>
+        <div class="socials">
+          <a href="#" class="soc"><i class="fa-brands fa-instagram"></i>Instagram</a>
+          <a href="#" class="soc"><i class="fa-brands fa-youtube"></i>YouTube</a>
+          <a href="#" class="soc"><i class="fa-brands fa-tiktok"></i>TikTok</a>
+          <a href="#" class="soc"><i class="fa-brands fa-github"></i>GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MISSION -->
+    <div class="mgrid">
+      <div class="mc rv">
+        <div class="mc-ico"><i class="fa-solid fa-hand-holding-heart"></i></div>
+        <h3>Berbagi Tanpa Batas</h3>
+        <p>Berbagi pengetahuan dan resource adalah investasi terbaik. Epennzy hadir sebagai platform yang terbuka untuk siapapun.</p>
+      </div>
+      <div class="mc rv">
+        <div class="mc-ico"><i class="fa-solid fa-rocket"></i></div>
+        <h3>Bantu Kreator Berkembang</h3>
+        <p>Banyak kreator berbakat yang terhambat biaya aplikasi premium. Epennzy hadir untuk membuka akses tersebut selebar-lebarnya.</p>
+      </div>
+      <div class="mc rv">
+        <div class="mc-ico"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3>Edukasi Teknologi</h3>
+        <p>Dengan section Coding Tools, gua ingin bantu developer pemula menemukan tools yang tepat tanpa perlu trial-error bertahun-tahun.</p>
+      </div>
+      <div class="mc rv">
+        <div class="mc-ico"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Resource Terpercaya</h3>
+        <p>Setiap konten di Epennzy sudah dikurasi sendiri. Tidak ada yang asal comot — semua harus terbukti works dan aman digunakan.</p>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="skills-card rv">
+      <h3><i class="fa-solid fa-chart-line" style="color:var(--accent)"></i>Keahlian</h3>
+      <div class="skill"><div class="skill-lbl"><span>Web Development</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-w="88"></div></div></div>
+      <div class="skill"><div class="skill-lbl"><span>Video Editing</span><span>82%</span></div><div class="skill-bar"><div class="skill-fill" data-w="82"></div></div></div>
+      <div class="skill"><div class="skill-lbl"><span>UI / UX Design</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" data-w="75"></div></div></div>
+      <div class="skill"><div class="skill-lbl"><span>Content Creation</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta rv">
+      <h3>Mau Ngobrol atau Kerjasama?</h3>
+      <p>Gua selalu terbuka untuk kolaborasi, pertanyaan, atau sekadar sapa. Jangan sungkan untuk menghubungi!</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/6281234567890" class="cbtn cbtn-fill" target="_blank"><i class="fa-brands fa-whatsapp"></i>Chat WhatsApp</a>
+        <a href="store.html" class="cbtn cbtn-ghost"><i class="fa-solid fa-bag-shopping"></i>Lihat Store</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><p>Copyright &copy; 2025 <b>Epennzy</b>. All rights reserved.</p></footer>
+
+<script>
+function toggleTheme(){const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';localStorage.setItem('epz',h.dataset.theme);}
+(()=>{const t=localStorage.getItem('epz');if(t)document.documentElement.dataset.theme=t;})();
+function toggleMob(){document.getElementById('mn').classList.toggle('op');}
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      e.target.querySelectorAll('.skill-fill').forEach(b=>{b.style.width=b.dataset.w+'%';});
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.rv').forEach(r=>io.observe(r));
+</script>
+</body>
+</html>
